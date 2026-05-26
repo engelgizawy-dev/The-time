@@ -95,6 +95,7 @@
             gap: 20px;
             justify-content: center;
             align-items: center;
+            margin-bottom: 35px;
         }
 
         .btn-core {
@@ -136,6 +137,30 @@
         #resetBtn:hover {
             border-color: #fff;
             color: #fff;
+        }
+
+        /* تذييل الحقوق الفخم المتناسق */
+        .footer-credits {
+            font-size: 0.75rem;
+            color: #444444;
+            letter-spacing: 2px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .footer-credits a {
+            color: #555555;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .footer-credits a:hover {
+            color: #25d366; /* لون الواتساب المميز عند التحويم لإثارة الانتباه */
+            text-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
         }
 
         /* زر القائمة الجانبية المبتكر (الثلاث شرط) */
@@ -188,7 +213,7 @@
             flex-direction: column;
             gap: 20px;
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            direction: rtl; /* لدعم واجهة عربي/إنجليزي مريحة */
+            direction: rtl;
         }
 
         .side-menu.open {
@@ -346,6 +371,11 @@
             <button class="btn-core" id="stopBtn" onclick="stopTimer()" style="display: none;">STOP / إيقاف</button>
             <button class="btn-core" id="resetBtn" onclick="resetTimer()">RESET / إعادة</button>
         </div>
+
+        <!-- التذييل الفخم المضاف حديثاً متصلاً بحساب الواتساب الخاص بك -->
+        <div class="footer-credits">
+            Designed & Developed by <a href="https://wa.me/201090747536" target="_blank" rel="noopener noreferrer">ENG ELGIZAWY</a>
+        </div>
     </div>
 
     <!-- حل سحري ومضمون للـ PiP -->
@@ -411,7 +441,6 @@
                 }
                 updateDisplay();
             }
-            // تشغيل الكانفاس الأولي لتهيئة الميزة بشكل مسبق
             renderPiPCanvas(document.getElementById('display').textContent);
         }
 
@@ -522,7 +551,6 @@
             const timeString = `${hours}:${minutes}:${seconds}`;
             document.getElementById('display').textContent = timeString;
             
-            // تحديث فوري مباشر للـ PIP العائم
             renderPiPCanvas(timeString);
         }
 
@@ -567,7 +595,7 @@
             saveStateToStorage();
         }
 
-        // الحل الهندسي لإصلاح ميزة الشاشة المصغرة (PiP) وجعلها تعمل 100%
+        // إعداد الـ PiP
         const canvas = document.createElement('canvas');
         canvas.width = 400;
         canvas.height = 150;
@@ -575,11 +603,8 @@
         const video = document.getElementById('hiddenVideo');
 
         function renderPiPCanvas(text) {
-            // رسم خلفية سوداء نقية داخل النافذة العائمة
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // تصميم أرقام مضيئة بلون أزرق نيون رائع للمتابعة فوق يوتيوب
             ctx.fillStyle = '#38bdf8'; 
             ctx.font = 'bold 55px Share Tech Mono, Courier New';
             ctx.textAlign = 'center';
@@ -594,12 +619,8 @@
                     await document.exitPictureInPicture();
                 } else {
                     renderPiPCanvas(document.getElementById('display').textContent);
-                    
-                    // تحويل مجرى حركة الكانفاس لبث فيديو حقيقي مستمر
                     const stream = canvas.captureStream(30); 
                     video.srcObject = stream;
-                    
-                    // تشغيل إجباري خفي لتنشيط النافذة بداخل المتصفح لقوانين الحماية الحديثة
                     await video.play();
                     await video.requestPictureInPicture();
                 }
@@ -609,7 +630,6 @@
             }
         }
 
-        // كود تكبير الشاشة الفل سكرين الكامل
         function toggleFullscreen() {
             closeMenuIfOpen();
             if (!document.fullscreenElement) {
