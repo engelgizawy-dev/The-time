@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENG ELGIZAWY | ULTRA TIMER</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Share+Tech+Mono&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -24,7 +24,7 @@
             height: 100vh;
             overflow: hidden;
             user-select: none;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
         }
 
         .container {
@@ -34,9 +34,9 @@
             padding: 20px;
         }
 
-        /* الاسم فخم وقابل للتعديل */
+        /* اسم البراند الفخم */
         .brand-wrapper {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             height: 50px;
             display: flex;
             justify-content: center;
@@ -45,7 +45,7 @@
 
         .brand-name {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: #ffffff;
             letter-spacing: 6px;
             text-transform: uppercase;
@@ -64,7 +64,7 @@
             border-bottom: 2px solid #38bdf8;
             color: #ffffff;
             font-family: 'Cinzel Decorative', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             text-align: center;
             letter-spacing: 6px;
             outline: none;
@@ -73,33 +73,7 @@
             max-width: 500px;
         }
 
-        /* تحسين اختيار الوضع (تبديل أنيق) */
-        .mode-selector {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .mode-btn {
-            background: transparent;
-            color: #555;
-            border: none;
-            padding: 6px 15px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .mode-btn.active {
-            color: #38bdf8;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-        }
-
-        /* شاشة العرض العملاقة */
+        /* شاشة العرض العملاقة النظيفة */
         .display-container {
             position: relative;
             margin-bottom: 40px;
@@ -107,187 +81,280 @@
 
         .timer-display {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 11rem; 
+            font-size: 12rem; 
             font-weight: bold;
             color: #f0f0f0; 
             letter-spacing: -2px;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            text-shadow: 0 0 35px rgba(255, 255, 255, 0.05);
             line-height: 1;
         }
 
-        /* مدخلات وقت العد التنازلي منبثقة بشكل أنيق فوق الأرقام عند الحاجة */
-        .countdown-inputs {
-            display: none;
+        /* أزرار التحكم الأساسية فقط في المنتصف بدون زحمة */
+        .main-controls {
+            display: flex;
+            gap: 20px;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.95);
-            padding: 20px 40px;
-            border-radius: 12px;
-            border: 1px solid #222;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
         }
 
-        .countdown-inputs input {
+        .btn-core {
+            background: transparent;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            padding: 12px 45px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        #startBtn {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+        #startBtn:hover {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        #stopBtn {
+            border: 2px solid #ff3333;
+            color: #ff3333;
+        }
+        #stopBtn:hover {
+            background: #ff3333;
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 51, 51, 0.4);
+        }
+
+        #resetBtn {
+            border: 2px solid #333;
+            color: #888;
+        }
+        #resetBtn:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        /* زر القائمة الجانبية المبتكر (الثلاث شرط) */
+        .menu-trigger {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .menu-trigger:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .menu-trigger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: #ffffff;
+            transition: 0.3s;
+        }
+
+        /* القائمة الجانبية الأنيقة */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid #1a1a1a;
+            z-index: 99;
+            padding: 80px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            direction: rtl; /* لدعم واجهة عربي/إنجليزي مريحة */
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .menu-item {
+            background: #111111;
+            border: 1px solid #222222;
+            color: #dddddd;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: right;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            border-color: #38bdf8;
+            color: #ffffff;
+            background: #161616;
+        }
+
+        .menu-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .menu-item p {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .menu-item.active {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        /* واجهة إدخال وقت التنازلي المنسدلة داخل القائمة */
+        .countdown-popup-inputs {
+            display: none;
+            justify-content: center;
+            gap: 8px;
+            direction: ltr;
+            margin-top: 10px;
+            background: #050505;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #222;
+        }
+
+        .countdown-popup-inputs input {
             background: #111;
             border: 1px solid #333;
             color: #38bdf8;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 2.5rem;
-            width: 80px;
+            font-size: 1.5rem;
+            width: 55px;
             text-align: center;
-            padding: 5px;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
-        .countdown-inputs input:focus {
-            border-color: #38bdf8;
-            outline: none;
-        }
-
-        .countdown-inputs .save-inputs-btn {
+        .countdown-popup-inputs button {
             background: #38bdf8;
             color: #000;
             border: none;
-            padding: 10px 15px;
-            font-size: 0.8rem;
+            padding: 0 10px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            letter-spacing: 1px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.8rem;
         }
 
-        /* تنظيم صف الأزرار ليكون متناسقاً وبدون زحمة */
-        .buttons-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin: 0 auto;
+        /* حل مشكلة تشغيل الـ PiP للمتصفحات الصارمة */
+        #hiddenVideo {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 1px;
+            height: 1px;
+            opacity: 0.01;
+            pointer-events: none;
         }
 
-        button.control-btn {
-            background: transparent;
-            color: #aaaaaa;
-            border: 1px solid #333333;
-            padding: 12px 30px;
-            font-size: 0.85rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            min-width: 130px;
-        }
-
-        button.control-btn:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        button#startBtn {
-            border-color: #ffffff;
-            color: #ffffff;
-            font-weight: 600;
-        }
-        button#startBtn:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        button#stopBtn {
-            border-color: #ff3333;
-            color: #ff3333;
-        }
-        button#stopBtn:hover {
-            background-color: #ff3333;
-            color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
-        }
-
-        button#setCountdownBtn {
-            border-color: #38bdf8;
-            color: #38bdf8;
-        }
-        button#setCountdownBtn:hover {
-            background-color: #38bdf8;
-            color: #000000;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-        }
-
-        /* ريسبونسيف ذكي للموبايل */
+        /* ريسبونسيف الموبايل */
         @media (max-width: 900px) {
             .brand-name { font-size: 1.8rem; }
-            .timer-display { font-size: 6rem; }
-            button.control-btn { padding: 10px 20px; font-size: 0.8rem; min-width: 110px; }
+            .timer-display { font-size: 7rem; }
+            .btn-core { padding: 10px 30px; font-size: 0.9rem; }
         }
         @media (max-width: 500px) {
-            .brand-name { font-size: 1.4rem; }
-            .timer-display { font-size: 4rem; }
-            .buttons-group { flex-direction: column; width: 100%; }
-            button.control-btn { width: 80%; }
-            .countdown-inputs { width: 90%; padding: 15px; }
-            .countdown-inputs input { font-size: 1.8rem; width: 60px; }
+            .brand-name { font-size: 1.3rem; }
+            .timer-display { font-size: 4.5rem; }
+            .main-controls { gap: 10px; width: 100%; padding: 0 10px; }
+            .btn-core { flex: 1; padding: 10px 0; text-align: center; }
+            .menu-trigger { top: 15px; right: 15px; }
         }
-
-        #hiddenVideo { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- الاسم المطور -->
+    <!-- زر الثلاث شرط المبتكر -->
+    <div class="menu-trigger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- القائمة الجانبية المخفية -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-item active" id="menuUp" onclick="switchMode('up')">
+            <h4>العد التصاعدي | Count Up</h4>
+            <p>ساعة إيقاف عادية لحساب الوقت التراكمي</p>
+        </div>
+        
+        <div class="menu-item" id="menuDown" onclick="toggleCountdownSetup()">
+            <h4>العد التنازلي | Count Down</h4>
+            <p>تحديد وقت معين والعد التنازلي حتى الصفر</p>
+            
+            <!-- خانات الإدخال منبثقة هنا بذكاء داخلي -->
+            <div class="countdown-popup-inputs" id="popupInputContainer" onclick="event.stopPropagation()">
+                <input type="number" id="inputH" placeholder="00" min="0" max="99" value="00">
+                <input type="number" id="inputM" placeholder="05" min="0" max="59" value="05">
+                <input type="number" id="inputS" placeholder="00" min="0" max="59" value="00">
+                <button onclick="saveCountdownInputs()">ضبط</button>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="togglePiP()">
+            <h4>الشاشة المصغرة | Picture in Picture</h4>
+            <p>عرض المؤقت عائم فوق اليوتيوب والتطبيقات الأخرى</p>
+        </div>
+
+        <div class="menu-item" onclick="toggleFullscreen()">
+            <h4>وضع التطبيق | Fullscreen Mode</h4>
+            <p>تكبير الشاشة بالكامل لتجربة فخمة وبدون تشتيت</p>
+        </div>
+    </div>
+
+    <!-- الواجهة الرئيسية النظيفة تماماً -->
+    <div class="container" onclick="closeMenuIfOpen()">
         <div class="brand-wrapper" id="brandContainer">
             <div class="brand-name" id="brandLabel" onclick="editBrandName()">ENG ELGIZAWY</div>
         </div>
 
-        <!-- وضعية العداد (مينيمال بدون زحمة زراير) -->
-        <div class="mode-selector">
-            <span class="mode-btn active" id="modeUp" onclick="switchMode('up')">COUNT UP</span>
-            <span style="color: #333;">|</span>
-            <span class="mode-btn" id="modeDown" onclick="switchMode('down')">COUNT DOWN</span>
-        </div>
-
-        <!-- منطقة العرض والمدخلات الذكية -->
         <div class="display-container">
             <div class="timer-display" id="display">00:00:00</div>
-            
-            <!-- واجهة الإدخال المنبثقة للعد التنازلي للخصوصية والترتيب -->
-            <div class="countdown-inputs" id="inputContainer">
-                <input type="number" id="inputH" placeholder="00" min="0" max="99" value="00">
-                <span style="color:#333; font-size: 2rem;">:</span>
-                <input type="number" id="inputM" placeholder="05" min="0" max="59" value="05">
-                <span style="color:#333; font-size: 2rem;">:</span>
-                <input type="number" id="inputS" placeholder="00" min="0" max="59" value="00">
-                <button class="save-inputs-btn" onclick="saveCountdownInputs()">SET</button>
-            </div>
         </div>
         
-        <!-- الأزرار الرئيسية المنظمة في صف واحد هندسي فخم -->
-        <div class="buttons-group">
-            <button class="control-btn" id="startBtn" onclick="startTimer()">START</button>
-            <button class="control-btn" id="stopBtn" onclick="stopTimer()" style="display: none;">STOP</button>
-            <button class="control-btn" id="setCountdownBtn" onclick="showCountdownPopup()" style="display: none;">SET TIME</button>
-            <button class="control-btn" id="resetBtn" onclick="resetTimer()">RESET</button>
-            <button class="control-btn" id="pipBtn" onclick="togglePiP()">PIP MODE</button>
-            <button class="control-btn" id="fsBtn" onclick="toggleFullscreen()">APP MODE</button>
+        <!-- الأزرار الأساسية فقط -->
+        <div class="main-controls">
+            <button class="btn-core" id="startBtn" onclick="startTimer()">START / تشغيل</button>
+            <button class="btn-core" id="stopBtn" onclick="stopTimer()" style="display: none;">STOP / إيقاف</button>
+            <button class="btn-core" id="resetBtn" onclick="resetTimer()">RESET / إعادة</button>
         </div>
     </div>
 
+    <!-- حل سحري ومضمون للـ PiP -->
     <video id="hiddenVideo" autoplay muted loop playsinline></video>
 
     <script>
         let timerInterval;
         let currentMode = 'up'; 
         
-        // المتغيرات الأساسية للوقت (سيتم تحميلها من الذاكرة إن وجدت)
         let state = {
             isRunning: false,
             mode: 'up',
@@ -297,30 +364,38 @@
             brandName: "ENG ELGIZAWY"
         };
 
-        // تحميل البيانات من الذاكرة فور فتح الصفحة (الوقاية من الريفريش)
+        // فتح وإغلاق القائمة الجانبية
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('open');
+        }
+
+        function closeMenuIfOpen() {
+            document.getElementById('sideMenu').classList.remove('open');
+        }
+
+        function toggleCountdownSetup() {
+            const container = document.getElementById('popupInputContainer');
+            container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // استعادة البيانات بعد الريفريش
         function loadState() {
             const savedState = localStorage.getItem('ultraTimerState');
             if (savedState) {
                 const parsed = JSON.parse(savedState);
                 state = parsed;
                 
-                // استعادة الاسم
                 document.getElementById('brandLabel').textContent = state.brandName;
-                
-                // استعادة الوضع
                 currentMode = state.mode;
-                document.getElementById('modeUp').classList.toggle('active', currentMode === 'up');
-                document.getElementById('modeDown').classList.toggle('active', currentMode === 'down');
-                document.getElementById('setCountdownBtn').style.display = currentMode === 'down' ? 'inline-block' : 'none';
+                
+                document.getElementById('menuUp').classList.toggle('active', currentMode === 'up');
+                document.getElementById('menuDown').classList.toggle('active', currentMode === 'down');
 
-                // إذا كان العداد يعمل أثناء عمل الريفريش، نقوم بتحديث الـ startTime بناءً على الوقت الحالي الحقيقي
                 if (state.isRunning) {
                     const actualPassedTime = Date.now() - state.startTime;
-                    
                     if (currentMode === 'up') {
                         state.elapsedTime = actualPassedTime;
                     } else {
-                        // في العد التنازلي
                         let timeLeft = state.countdownTotalMs - actualPassedTime;
                         if (timeLeft <= 0) {
                             state.isRunning = false;
@@ -334,16 +409,17 @@
                         document.getElementById('stopBtn').style.display = 'inline-block';
                     }
                 }
-                
                 updateDisplay();
             }
+            // تشغيل الكانفاس الأولي لتهيئة الميزة بشكل مسبق
+            renderPiPCanvas(document.getElementById('display').textContent);
         }
 
         function saveStateToStorage() {
             localStorage.setItem('ultraTimerState', JSON.stringify(state));
         }
 
-        // كود الاسم
+        // تعديل وحفظ الاسم الشخصي
         function editBrandName() {
             const currentName = document.getElementById('brandLabel').textContent;
             const container = document.getElementById('brandContainer');
@@ -367,30 +443,24 @@
             if (event.key === "Enter") saveBrandName();
         }
 
-        // التبديل بين الأنماط بسلاسة وبدون زحمة
+        // تغيير الوضع من القائمة الجانبية
         function switchMode(mode) {
             if (state.isRunning || state.elapsedTime > 0) {
-                if(!confirm("Changing mode will reset the current timer. Proceed?")) return;
+                if(!confirm("تغيير الوضع سيقوم بإعادة تعيين المؤقت الحالي، هل تريد الاستمرار؟")) return;
             }
             
             resetTimer();
             currentMode = mode;
             state.mode = mode;
             
-            document.getElementById('modeUp').classList.toggle('active', mode === 'up');
-            document.getElementById('modeDown').classList.toggle('active', mode === 'down');
-            document.getElementById('setCountdownBtn').style.display = mode === 'down' ? 'inline-block' : 'none';
+            document.getElementById('menuUp').classList.toggle('active', mode === 'up');
+            document.getElementById('menuDown').classList.toggle('active', mode === 'down');
             
-            if (mode === 'down') {
-                showCountdownPopup();
-            } else {
+            if (mode === 'up') {
                 updateDisplay();
+                closeMenuIfOpen();
             }
             saveStateToStorage();
-        }
-
-        function showCountdownPopup() {
-            document.getElementById('inputContainer').style.display = 'flex';
         }
 
         function saveCountdownInputs() {
@@ -400,13 +470,18 @@
             
             state.countdownTotalMs = ((h * 3600) + (m * 60) + s) * 1000;
             state.elapsedTime = 0;
+            currentMode = 'down';
+            state.mode = 'down';
             
-            document.getElementById('inputContainer').style.display = 'none';
+            document.getElementById('menuUp').classList.remove('active');
+            document.getElementById('menuDown').classList.add('active');
+            document.getElementById('popupInputContainer').style.display = 'none';
+            
             updateDisplay();
             saveStateToStorage();
+            closeMenuIfOpen();
         }
 
-        // تحديث الرندرة على الشاشة
         function updateTime() {
             if (currentMode === 'up') {
                 state.elapsedTime = Date.now() - state.startTime;
@@ -418,17 +493,15 @@
                     timerInterval = null;
                     state.isRunning = false;
                     state.elapsedTime = state.countdownTotalMs;
-                    document.getElementById('startBtn').textContent = 'START';
+                    document.getElementById('startBtn').textContent = 'START / تشغيل';
                     document.getElementById('startBtn').style.display = 'inline-block';
                     document.getElementById('stopBtn').style.display = 'none';
-                    alert("Time is UP!");
+                    alert("انتهى الوقت المحدَد!");
                 }
-                // الحفاظ على قيمة الوقت المنقضي الفعلي عند التوقف
                 if(state.isRunning) {
                     state.elapsedTime = state.countdownTotalMs - timeLeft;
                 }
             }
-            
             updateDisplay();
             saveStateToStorage();
         }
@@ -449,14 +522,14 @@
             const timeString = `${hours}:${minutes}:${seconds}`;
             document.getElementById('display').textContent = timeString;
             
-            if(document.pictureInPictureElement) {
-                renderPiPCanvas(timeString);
-            }
+            // تحديث فوري مباشر للـ PIP العائم
+            renderPiPCanvas(timeString);
         }
 
         function startTimer() {
             if (currentMode === 'down' && state.countdownTotalMs === 0) {
-                showCountdownPopup();
+                toggleMenu();
+                toggleCountdownSetup();
                 return;
             }
 
@@ -473,7 +546,7 @@
             clearInterval(timerInterval);
             timerInterval = null;
             state.isRunning = false;
-            document.getElementById('startBtn').textContent = 'RESUME';
+            document.getElementById('startBtn').textContent = 'RESUME / استئناف';
             document.getElementById('startBtn').style.display = 'inline-block';
             document.getElementById('stopBtn').style.display = 'none';
             saveStateToStorage();
@@ -485,82 +558,69 @@
             state.isRunning = false;
             state.elapsedTime = 0;
             
-            if(currentMode === 'up') {
-                state.countdownTotalMs = 0;
-            }
+            if(currentMode === 'up') state.countdownTotalMs = 0;
             
             updateDisplay();
-            document.getElementById('startBtn').textContent = 'START';
+            document.getElementById('startBtn').textContent = 'START / تشغيل';
             document.getElementById('startBtn').style.display = 'inline-block';
             document.getElementById('stopBtn').style.display = 'none';
             saveStateToStorage();
         }
 
-        // كود الـ PiP العائم الفخم
+        // الحل الهندسي لإصلاح ميزة الشاشة المصغرة (PiP) وجعلها تعمل 100%
         const canvas = document.createElement('canvas');
-        canvas.width = 320;
-        canvas.height = 120;
+        canvas.width = 400;
+        canvas.height = 150;
         const ctx = canvas.getContext('2d');
         const video = document.getElementById('hiddenVideo');
 
         function renderPiPCanvas(text) {
+            // رسم خلفية سوداء نقية داخل النافذة العائمة
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // تصميم أرقام مضيئة بلون أزرق نيون رائع للمتابعة فوق يوتيوب
             ctx.fillStyle = '#38bdf8'; 
-            ctx.font = 'bold 46px Courier New';
+            ctx.font = 'bold 55px Share Tech Mono, Courier New';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(text, canvas.width / 2, canvas.height / 2);
         }
 
         async function togglePiP() {
+            closeMenuIfOpen();
             try {
                 if (document.pictureInPictureElement) {
                     await document.exitPictureInPicture();
-                    document.getElementById('pipBtn').textContent = 'PIP MODE';
                 } else {
                     renderPiPCanvas(document.getElementById('display').textContent);
-                    const stream = canvas.captureStream(10);
+                    
+                    // تحويل مجرى حركة الكانفاس لبث فيديو حقيقي مستمر
+                    const stream = canvas.captureStream(30); 
                     video.srcObject = stream;
                     
-                    video.onloadedmetadata = async () => {
-                        try {
-                            await video.requestPictureInPicture();
-                            document.getElementById('pipBtn').textContent = 'EXIT PIP';
-                        } catch (err) {
-                            console.error(err);
-                        }
-                    };
+                    // تشغيل إجباري خفي لتنشيط النافذة بداخل المتصفح لقوانين الحماية الحديثة
+                    await video.play();
+                    await video.requestPictureInPicture();
                 }
             } catch (error) {
-                alert("PiP mode interaction error.");
+                alert("برجاء الضغط أولاً على START لتفعيل التوقيت، ثم تفعيل الشاشة المصغرة.");
+                console.error(error);
             }
         }
 
-        video.addEventListener('leavepictureinpicture', () => {
-            document.getElementById('pipBtn').textContent = 'PIP MODE';
-        });
-
-        // كود الـ Fullscreen
+        // كود تكبير الشاشة الفل سكرين الكامل
         function toggleFullscreen() {
+            closeMenuIfOpen();
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen().catch(err => {
-                    alert(`Error: ${err.message}`);
+                    alert(`خطأ: ${err.message}`);
                 });
-                document.getElementById('fsBtn').textContent = 'EXIT APP';
             } else {
                 document.exitFullscreen();
-                document.getElementById('fsBtn').textContent = 'APP MODE';
             }
         }
 
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-                document.getElementById('fsBtn').textContent = 'APP MODE';
-            }
-        });
-
-        // تشغيل الـ Load عند فتح الصفحة فوراً
         window.onload = loadState;
     </script>
 </body>
