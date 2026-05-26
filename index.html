@@ -159,19 +159,19 @@
         }
 
         .footer-credits a:hover {
-            color: #25d366; /* لون الواتساب المميز عند التحويم لإثارة الانتباه */
+            color: #25d366; 
             text-shadow: 0 0 10px rgba(37, 211, 102, 0.4);
         }
 
-        /* زر القائمة الجانبية المبتكر (الثلاث شرط) */
+        /* تحديث زر القائمة الجانبية (الثلاث شرط) ليكون واضحاً ومضيئاً بشكل بارز وجذاب */
         .menu-trigger {
             position: fixed;
             top: 30px;
             right: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 50px;
-            height: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(56, 189, 248, 0.6); /* إطار أزرق واضح */
+            width: 52px;
+            height: 52px;
             border-radius: 50px;
             display: flex;
             flex-direction: column;
@@ -180,21 +180,24 @@
             gap: 5px;
             cursor: pointer;
             z-index: 100;
-            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); /* هالة مضيئة تلفت الانتباه فوراً */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .menu-trigger:hover {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: #38bdf8;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #ffffff;
+            transform: scale(1.08); /* تكبير خفيف عند التحويم للتفاعل */
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8), 0 0 10px #ffffff;
         }
 
         .menu-trigger span {
             display: block;
-            width: 22px;
-            height: 2px;
+            width: 24px;
+            height: 2.5px; /* زيادة سماكة الخطوط لتكون واضحة جداً */
             background-color: #ffffff;
             transition: 0.3s;
+            border-radius: 2px;
         }
 
         /* القائمة الجانبية الأنيقة */
@@ -317,7 +320,7 @@
 </head>
 <body>
 
-    <!-- زر الثلاث شرط المبتكر -->
+    <!-- زر الثلاث شرط المطور والمضيء -->
     <div class="menu-trigger" onclick="toggleMenu()">
         <span></span>
         <span></span>
@@ -372,7 +375,7 @@
             <button class="btn-core" id="resetBtn" onclick="resetTimer()">RESET / إعادة</button>
         </div>
 
-        <!-- التذييل الفخم المضاف حديثاً متصلاً بحساب الواتساب الخاص بك -->
+        <!-- التذييل المتصل بحساب الواتساب الخاص بك -->
         <div class="footer-credits">
             Designed & Developed by <a href="https://wa.me/201090747536" target="_blank" rel="noopener noreferrer">ENG ELGIZAWY</a>
         </div>
@@ -394,7 +397,6 @@
             brandName: "ENG ELGIZAWY"
         };
 
-        // فتح وإغلاق القائمة الجانبية
         function toggleMenu() {
             document.getElementById('sideMenu').classList.toggle('open');
         }
@@ -408,7 +410,6 @@
             container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        // استعادة البيانات بعد الريفريش
         function loadState() {
             const savedState = localStorage.getItem('ultraTimerState');
             if (savedState) {
@@ -448,7 +449,6 @@
             localStorage.setItem('ultraTimerState', JSON.stringify(state));
         }
 
-        // تعديل وحفظ الاسم الشخصي
         function editBrandName() {
             const currentName = document.getElementById('brandLabel').textContent;
             const container = document.getElementById('brandContainer');
@@ -472,7 +472,6 @@
             if (event.key === "Enter") saveBrandName();
         }
 
-        // تغيير الوضع من القائمة الجانبية
         function switchMode(mode) {
             if (state.isRunning || state.elapsedTime > 0) {
                 if(!confirm("تغيير الوضع سيقوم بإعادة تعيين المؤقت الحالي، هل تريد الاستمرار؟")) return;
@@ -595,7 +594,6 @@
             saveStateToStorage();
         }
 
-        // إعداد الـ PiP
         const canvas = document.createElement('canvas');
         canvas.width = 400;
         canvas.height = 150;
