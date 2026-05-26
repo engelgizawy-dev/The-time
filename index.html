@@ -1,1 +1,211 @@
-print: 27282828
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENG ELGIZAWY | ULTRA TIMER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .brand-name {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* تكبير الأرقام لأقصى درجة فخمة */
+        .timer-display {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11rem; /* حجم عملاق */
+            font-weight: bold;
+            color: #f0f0f0; 
+            letter-spacing: -2px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+            line-height: 1;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            background: transparent;
+            color: #888888;
+            border: 1px solid #222222;
+            padding: 14px 40px;
+            font-size: 0.95rem;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            letter-spacing: 1.5px;
+        }
+
+        button:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        button#startBtn {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        button#startBtn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        button#stopBtn {
+            border-color: #ff3333;
+            color: #ff3333;
+        }
+
+        button#stopBtn:hover {
+            background-color: #ff3333;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
+        }
+
+        /* زر ملء الشاشة الخاص */
+        button#fsBtn {
+            border-color: #555555;
+            color: #aaaaaa;
+        }
+        button#fsBtn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        /* ريسبونسيف للموبايل عشان الأرقام ما تضربش */
+        @media (max-width: 900px) {
+            .brand-name { font-size: 1.8rem; }
+            .timer-display { font-size: 6rem; }
+            button { padding: 10px 25px; font-size: 0.85rem; }
+        }
+        @media (max-width: 500px) {
+            .brand-name { font-size: 1.3rem; }
+            .timer-display { font-size: 4.2rem; }
+            .buttons { flex-direction: column; gap: 10px; }
+            button { width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="brand-name">ENG ELGIZAWY</div>
+        <div class="timer-display" id="display">00:00:00</div>
+        
+        <div class="buttons">
+            <button id="startBtn" onclick="startTimer()">START</button>
+            <button id="stopBtn" onclick="stopTimer()" style="display: none;">STOP</button>
+            <button id="resetBtn" onclick="resetTimer()">RESET</button>
+            <!-- زر تحويل الصفحة لأبلكيشن -->
+            <button id="fsBtn" onclick="toggleFullscreen()">APP MODE</button>
+        </div>
+    </div>
+
+    <script>
+        let startTime = 0;
+        let elapsedTime = 0;
+        let timerInterval;
+
+        function updateTime() {
+            elapsedTime = Date.now() - startTime;
+            
+            let totalSeconds = Math.floor(elapsedTime / 1000);
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+
+            hours = String(hours).padStart(2, '0');
+            minutes = String(minutes).padStart(2, '0');
+            seconds = String(seconds).padStart(2, '0');
+
+            document.getElementById('display').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(updateTime, 1000);
+            
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('stopBtn').style.display = 'inline-block';
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('startBtn').textContent = 'RESUME';
+            document.getElementById('startBtn').style.display = 'inline-block';
+            document.getElementById('stopBtn').style.display = 'none';
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            document.getElementById('display').textContent = "00:00:00";
+            document.getElementById('startBtn').textContent = 'START';
+            document.getElementById('startBtn').style.display = 'inline-block';
+            document.getElementById('stopBtn').style.display = 'none';
+        }
+
+        // سحر الـ Fullscreen الفخم
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error trying to enable fullscreen: ${err.message}`);
+                });
+                document.getElementById('fsBtn').textContent = 'EXIT APP';
+            } else {
+                document.exitFullscreen();
+                document.getElementById('fsBtn').textContent = 'APP MODE';
+            }
+        }
+
+        // تغيير نص الزرار لو المستخدم خرج بـ ESC من الكيبورد
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                document.getElementById('fsBtn').textContent = 'APP MODE';
+            }
+        });
+    </script>
+</body>
+</html>
