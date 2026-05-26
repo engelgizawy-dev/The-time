@@ -24,6 +24,7 @@
             height: 100vh;
             overflow: hidden;
             user-select: none;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         .container {
@@ -33,18 +34,24 @@
             padding: 20px;
         }
 
-        /* تعديل الاسم ليكون قابل للضغط والتعديل */
+        /* الاسم فخم وقابل للتعديل */
+        .brand-wrapper {
+            margin-bottom: 15px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .brand-name {
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #ffffff;
             letter-spacing: 6px;
-            margin-bottom: 20px;
             text-transform: uppercase;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: color 0.3s;
-            display: inline-block;
         }
         
         .brand-name:hover {
@@ -57,57 +64,81 @@
             border-bottom: 2px solid #38bdf8;
             color: #ffffff;
             font-family: 'Cinzel Decorative', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-align: center;
             letter-spacing: 6px;
             outline: none;
-            margin-bottom: 20px;
             text-transform: uppercase;
-            width: 80%;
-            max-width: 600px;
+            width: 100%;
+            max-width: 500px;
         }
 
-        /* اختيار الأنماط (تصاعدي / تنازلي) */
+        /* تحسين اختيار الوضع (تبديل أنيق) */
         .mode-selector {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .mode-btn {
-            background: #111;
-            color: #666;
-            border: 1px solid #333;
-            padding: 8px 20px;
-            font-size: 0.85rem;
-            border-radius: 20px;
+            background: transparent;
+            color: #555;
+            border: none;
+            padding: 6px 15px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         .mode-btn.active {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            color: #38bdf8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
         }
 
-        /* واجهة مدخلات الوقت للعد التنازلي */
+        /* شاشة العرض العملاقة */
+        .display-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timer-display {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11rem; 
+            font-weight: bold;
+            color: #f0f0f0; 
+            letter-spacing: -2px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+
+        /* مدخلات وقت العد التنازلي منبثقة بشكل أنيق فوق الأرقام عند الحاجة */
         .countdown-inputs {
             display: none;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 40px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
         }
 
         .countdown-inputs input {
             background: #111;
             border: 1px solid #333;
-            color: #fff;
+            color: #38bdf8;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 1.8rem;
-            width: 70px;
+            font-size: 2.5rem;
+            width: 80px;
             text-align: center;
             padding: 5px;
             border-radius: 6px;
@@ -118,41 +149,44 @@
             outline: none;
         }
 
-        /* واجهة أرقام المؤقت الفخمة */
-        .timer-display {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 11rem; 
+        .countdown-inputs .save-inputs-btn {
+            background: #38bdf8;
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            font-size: 0.8rem;
             font-weight: bold;
-            color: #f0f0f0; 
-            letter-spacing: -2px;
-            margin-bottom: 40px;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
-            line-height: 1;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 1px;
         }
 
-        .buttons {
+        /* تنظيم صف الأزرار ليكون متناسقاً وبدون زحمة */
+        .buttons-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        button {
+        button.control-btn {
             background: transparent;
-            color: #888888;
-            border: 1px solid #222222;
-            padding: 14px 40px;
-            font-size: 0.95rem;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #aaaaaa;
+            border: 1px solid #333333;
+            padding: 12px 30px;
+            font-size: 0.85rem;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
             letter-spacing: 1.5px;
+            min-width: 130px;
         }
 
-        button:hover {
+        button.control-btn:hover {
             color: #ffffff;
             border-color: #ffffff;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
@@ -161,8 +195,8 @@
         button#startBtn {
             border-color: #ffffff;
             color: #ffffff;
+            font-weight: 600;
         }
-
         button#startBtn:hover {
             background-color: #ffffff;
             color: #000000;
@@ -172,92 +206,144 @@
             border-color: #ff3333;
             color: #ff3333;
         }
-
         button#stopBtn:hover {
             background-color: #ff3333;
             color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
         }
 
-        /* زر وضع الـ PIP المطور */
-        button#pipBtn {
-            border-color: #a855f7;
-            color: #c084fc;
-        }
-        button#pipBtn:hover {
-            background-color: #a855f7;
-            color: #ffffff;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-        }
-
-        button#fsBtn {
-            border-color: #555555;
-            color: #aaaaaa;
-        }
-        button#fsBtn:hover {
+        button#setCountdownBtn {
             border-color: #38bdf8;
             color: #38bdf8;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        button#setCountdownBtn:hover {
+            background-color: #38bdf8;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
 
-        /* ريسبونسيف للموبايل */
+        /* ريسبونسيف ذكي للموبايل */
         @media (max-width: 900px) {
             .brand-name { font-size: 1.8rem; }
             .timer-display { font-size: 6rem; }
-            button { padding: 10px 25px; font-size: 0.85rem; }
+            button.control-btn { padding: 10px 20px; font-size: 0.8rem; min-width: 110px; }
         }
         @media (max-width: 500px) {
-            .brand-name { font-size: 1.3rem; }
-            .timer-display { font-size: 4.2rem; }
-            .buttons { flex-direction: column; gap: 10px; }
-            button { width: 80%; }
+            .brand-name { font-size: 1.4rem; }
+            .timer-display { font-size: 4rem; }
+            .buttons-group { flex-direction: column; width: 100%; }
+            button.control-btn { width: 80%; }
+            .countdown-inputs { width: 90%; padding: 15px; }
+            .countdown-inputs input { font-size: 1.8rem; width: 60px; }
         }
 
-        /* عنصر فيديو مخفي لتشغيل ميزة النوافذ العائمة */
-        #hiddenVideo {
-            display: none;
-        }
+        #hiddenVideo { display: none; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div id="brandContainer">
+        <!-- الاسم المطور -->
+        <div class="brand-wrapper" id="brandContainer">
             <div class="brand-name" id="brandLabel" onclick="editBrandName()">ENG ELGIZAWY</div>
         </div>
 
+        <!-- وضعية العداد (مينيمال بدون زحمة زراير) -->
         <div class="mode-selector">
-            <button class="mode-btn active" id="modeUp" onclick="switchMode('up')">COUNT UP</button>
-            <button class="mode-btn" id="modeDown" onclick="switchMode('down')">COUNT DOWN</button>
+            <span class="mode-btn active" id="modeUp" onclick="switchMode('up')">COUNT UP</span>
+            <span style="color: #333;">|</span>
+            <span class="mode-btn" id="modeDown" onclick="switchMode('down')">COUNT DOWN</span>
         </div>
 
-        <div class="countdown-inputs" id="inputContainer">
-            <input type="number" id="inputH" placeholder="HH" min="0" max="99" value="00"> :
-            <input type="number" id="inputM" placeholder="MM" min="0" max="59" value="05"> :
-            <input type="number" id="inputS" placeholder="SS" min="0" max="59" value="00">
+        <!-- منطقة العرض والمدخلات الذكية -->
+        <div class="display-container">
+            <div class="timer-display" id="display">00:00:00</div>
+            
+            <!-- واجهة الإدخال المنبثقة للعد التنازلي للخصوصية والترتيب -->
+            <div class="countdown-inputs" id="inputContainer">
+                <input type="number" id="inputH" placeholder="00" min="0" max="99" value="00">
+                <span style="color:#333; font-size: 2rem;">:</span>
+                <input type="number" id="inputM" placeholder="05" min="0" max="59" value="05">
+                <span style="color:#333; font-size: 2rem;">:</span>
+                <input type="number" id="inputS" placeholder="00" min="0" max="59" value="00">
+                <button class="save-inputs-btn" onclick="saveCountdownInputs()">SET</button>
+            </div>
         </div>
-
-        <div class="timer-display" id="display">00:00:00</div>
         
-        <div class="buttons">
-            <button id="startBtn" onclick="startTimer()">START</button>
-            <button id="stopBtn" onclick="stopTimer()" style="display: none;">STOP</button>
-            <button id="resetBtn" onclick="resetTimer()">RESET</button>
-            <button id="pipBtn" onclick="togglePiP()">PIP MODE</button>
-            <button id="fsBtn" onclick="toggleFullscreen()">APP MODE</button>
+        <!-- الأزرار الرئيسية المنظمة في صف واحد هندسي فخم -->
+        <div class="buttons-group">
+            <button class="control-btn" id="startBtn" onclick="startTimer()">START</button>
+            <button class="control-btn" id="stopBtn" onclick="stopTimer()" style="display: none;">STOP</button>
+            <button class="control-btn" id="setCountdownBtn" onclick="showCountdownPopup()" style="display: none;">SET TIME</button>
+            <button class="control-btn" id="resetBtn" onclick="resetTimer()">RESET</button>
+            <button class="control-btn" id="pipBtn" onclick="togglePiP()">PIP MODE</button>
+            <button class="control-btn" id="fsBtn" onclick="toggleFullscreen()">APP MODE</button>
         </div>
     </div>
 
-    <video id= "hiddenVideo" autoplay muted loop playsinline></video>
+    <video id="hiddenVideo" autoplay muted loop playsinline></video>
 
     <script>
-        let startTime = 0;
-        let elapsedTime = 0;
         let timerInterval;
-        let currentMode = 'up'; // 'up' أو 'down'
-        let countdownTotalMs = 0; // إجمالي وقت العد التنازلي المتبقي
+        let currentMode = 'up'; 
+        
+        // المتغيرات الأساسية للوقت (سيتم تحميلها من الذاكرة إن وجدت)
+        let state = {
+            isRunning: false,
+            mode: 'up',
+            startTime: 0,
+            elapsedTime: 0,
+            countdownTotalMs: 0,
+            brandName: "ENG ELGIZAWY"
+        };
 
-        // كود لتعديل الاسم الشخصي للمستخدم بشكل ذكي
+        // تحميل البيانات من الذاكرة فور فتح الصفحة (الوقاية من الريفريش)
+        function loadState() {
+            const savedState = localStorage.getItem('ultraTimerState');
+            if (savedState) {
+                const parsed = JSON.parse(savedState);
+                state = parsed;
+                
+                // استعادة الاسم
+                document.getElementById('brandLabel').textContent = state.brandName;
+                
+                // استعادة الوضع
+                currentMode = state.mode;
+                document.getElementById('modeUp').classList.toggle('active', currentMode === 'up');
+                document.getElementById('modeDown').classList.toggle('active', currentMode === 'down');
+                document.getElementById('setCountdownBtn').style.display = currentMode === 'down' ? 'inline-block' : 'none';
+
+                // إذا كان العداد يعمل أثناء عمل الريفريش، نقوم بتحديث الـ startTime بناءً على الوقت الحالي الحقيقي
+                if (state.isRunning) {
+                    const actualPassedTime = Date.now() - state.startTime;
+                    
+                    if (currentMode === 'up') {
+                        state.elapsedTime = actualPassedTime;
+                    } else {
+                        // في العد التنازلي
+                        let timeLeft = state.countdownTotalMs - actualPassedTime;
+                        if (timeLeft <= 0) {
+                            state.isRunning = false;
+                            state.elapsedTime = state.countdownTotalMs;
+                        }
+                    }
+                    
+                    if (state.isRunning) {
+                        timerInterval = setInterval(updateTime, 100);
+                        document.getElementById('startBtn').style.display = 'none';
+                        document.getElementById('stopBtn').style.display = 'inline-block';
+                    }
+                }
+                
+                updateDisplay();
+            }
+        }
+
+        function saveStateToStorage() {
+            localStorage.setItem('ultraTimerState', JSON.stringify(state));
+        }
+
+        // كود الاسم
         function editBrandName() {
             const currentName = document.getElementById('brandLabel').textContent;
             const container = document.getElementById('brandContainer');
@@ -268,75 +354,93 @@
 
         function saveBrandName() {
             const input = document.getElementById('brandEdit');
+            if(!input) return;
             let newName = input.value.trim();
-            if (newName === "") newName = "ENG ELGIZAWY"; // العودة للأصل عند تركه فارغاً
+            if (newName === "") newName = "ENG ELGIZAWY";
+            state.brandName = newName;
+            saveStateToStorage();
             const container = document.getElementById('brandContainer');
             container.innerHTML = `<div class="brand-name" id="brandLabel" onclick="editBrandName()">${newName}</div>`;
         }
 
         function checkEnter(event) {
-            if (event.key === "Enter") {
-                saveBrandName();
-            }
+            if (event.key === "Enter") saveBrandName();
         }
 
-        // التبديل بين العداد التصاعدي والتنازلي
+        // التبديل بين الأنماط بسلاسة وبدون زحمة
         function switchMode(mode) {
-            if (timerInterval) resetTimer();
+            if (state.isRunning || state.elapsedTime > 0) {
+                if(!confirm("Changing mode will reset the current timer. Proceed?")) return;
+            }
+            
+            resetTimer();
             currentMode = mode;
+            state.mode = mode;
             
             document.getElementById('modeUp').classList.toggle('active', mode === 'up');
             document.getElementById('modeDown').classList.toggle('active', mode === 'down');
-            document.getElementById('inputContainer').style.display = mode === 'down' ? 'flex' : 'none';
+            document.getElementById('setCountdownBtn').style.display = mode === 'down' ? 'inline-block' : 'none';
             
-            if(mode === 'down') {
-                updateDisplayFromInputs();
+            if (mode === 'down') {
+                showCountdownPopup();
             } else {
-                document.getElementById('display').textContent = "00:00:00";
+                updateDisplay();
             }
+            saveStateToStorage();
         }
 
-        function updateDisplayFromInputs() {
-            let h = String(Math.max(0, parseInt(document.getElementById('inputH').value) || 0)).padStart(2, '0');
-            let m = String(Math.max(0, parseInt(document.getElementById('inputM').value) || 0)).padStart(2, '0');
-            let s = String(Math.max(0, parseInt(document.getElementById('inputS').value) || 0)).padStart(2, '0');
-            document.getElementById('display').textContent = `${h}:${m}:${s}`;
+        function showCountdownPopup() {
+            document.getElementById('inputContainer').style.display = 'flex';
         }
 
-        // مراقبة مدخلات العد التنازلي لتحديث الشاشة فوراً
-        document.querySelectorAll('.countdown-inputs input').forEach(input => {
-            input.addEventListener('input', () => {
-                if(currentMode === 'down') updateDisplayFromInputs();
-            });
-        });
+        function saveCountdownInputs() {
+            let h = parseInt(document.getElementById('inputH').value) || 0;
+            let m = parseInt(document.getElementById('inputM').value) || 0;
+            let s = parseInt(document.getElementById('inputS').value) || 0;
+            
+            state.countdownTotalMs = ((h * 3600) + (m * 60) + s) * 1000;
+            state.elapsedTime = 0;
+            
+            document.getElementById('inputContainer').style.display = 'none';
+            updateDisplay();
+            saveStateToStorage();
+        }
 
-        // تحديث الوقت على الواجهة
+        // تحديث الرندرة على الشاشة
         function updateTime() {
-            let hours, minutes, seconds;
-
             if (currentMode === 'up') {
-                elapsedTime = Date.now() - startTime;
-                let totalSeconds = Math.floor(elapsedTime / 1000);
-                hours = Math.floor(totalSeconds / 3600);
-                minutes = Math.floor((totalSeconds % 3600) / 60);
-                seconds = totalSeconds % 60;
+                state.elapsedTime = Date.now() - state.startTime;
             } else {
-                let timeLeft = countdownTotalMs - (Date.now() - startTime);
+                let timeLeft = state.countdownTotalMs - (Date.now() - state.startTime);
                 if (timeLeft <= 0) {
                     timeLeft = 0;
                     clearInterval(timerInterval);
                     timerInterval = null;
+                    state.isRunning = false;
+                    state.elapsedTime = state.countdownTotalMs;
                     document.getElementById('startBtn').textContent = 'START';
                     document.getElementById('startBtn').style.display = 'inline-block';
                     document.getElementById('stopBtn').style.display = 'none';
                     alert("Time is UP!");
                 }
-                let totalSeconds = Math.floor(timeLeft / 1000);
-                hours = Math.floor(totalSeconds / 3600);
-                minutes = Math.floor((totalSeconds % 3600) / 60);
-                seconds = totalSeconds % 60;
-                elapsedTime = countdownTotalMs - timeLeft; // للحفاظ على القيمة عند الإيقاف المؤقت
+                // الحفاظ على قيمة الوقت المنقضي الفعلي عند التوقف
+                if(state.isRunning) {
+                    state.elapsedTime = state.countdownTotalMs - timeLeft;
+                }
             }
+            
+            updateDisplay();
+            saveStateToStorage();
+        }
+
+        function updateDisplay() {
+            let totalMs = currentMode === 'up' ? state.elapsedTime : (state.countdownTotalMs - state.elapsedTime);
+            if (totalMs < 0) totalMs = 0;
+
+            let totalSeconds = Math.floor(totalMs / 1000);
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
 
             hours = String(hours).padStart(2, '0');
             minutes = String(minutes).padStart(2, '0');
@@ -345,66 +449,54 @@
             const timeString = `${hours}:${minutes}:${seconds}`;
             document.getElementById('display').textContent = timeString;
             
-            // تحديث نافذة الـ PIP العائمة باستمرار إذا كانت مفعلة
             if(document.pictureInPictureElement) {
                 renderPiPCanvas(timeString);
             }
         }
 
         function startTimer() {
-            if (currentMode === 'up') {
-                startTime = Date.now() - elapsedTime;
-            } else {
-                if (elapsedTime === 0) { // بداية جديدة للعد التنازلي
-                    let h = parseInt(document.getElementById('inputH').value) || 0;
-                    let m = parseInt(document.getElementById('inputM').value) || 0;
-                    let s = parseInt(document.getElementById('inputS').value) || 0;
-                    countdownTotalMs = ((h * 3600) + (m * 60) + s) * 1000;
-                    
-                    if(countdownTotalMs <= 0) {
-                        alert("Please set a valid time first!");
-                        return;
-                    }
-                }
-                startTime = Date.now() - elapsedTime;
+            if (currentMode === 'down' && state.countdownTotalMs === 0) {
+                showCountdownPopup();
+                return;
             }
 
-            timerInterval = setInterval(updateTime, 100); // تحديث سريع وسلس للـ PiP
+            state.isRunning = true;
+            state.startTime = Date.now() - state.elapsedTime;
+            timerInterval = setInterval(updateTime, 100);
             
             document.getElementById('startBtn').style.display = 'none';
             document.getElementById('stopBtn').style.display = 'inline-block';
+            saveStateToStorage();
         }
 
         function stopTimer() {
             clearInterval(timerInterval);
             timerInterval = null;
+            state.isRunning = false;
             document.getElementById('startBtn').textContent = 'RESUME';
             document.getElementById('startBtn').style.display = 'inline-block';
             document.getElementById('stopBtn').style.display = 'none';
+            saveStateToStorage();
         }
 
         function resetTimer() {
             clearInterval(timerInterval);
             timerInterval = null;
-            elapsedTime = 0;
-            countdownTotalMs = 0;
+            state.isRunning = false;
+            state.elapsedTime = 0;
             
-            if (currentMode === 'up') {
-                document.getElementById('display').textContent = "00:00:00";
-            } else {
-                updateDisplayFromInputs();
+            if(currentMode === 'up') {
+                state.countdownTotalMs = 0;
             }
             
+            updateDisplay();
             document.getElementById('startBtn').textContent = 'START';
             document.getElementById('startBtn').style.display = 'inline-block';
             document.getElementById('stopBtn').style.display = 'none';
-
-            if(document.pictureInPictureElement) {
-                renderPiPCanvas(document.getElementById('display').textContent);
-            }
+            saveStateToStorage();
         }
 
-        // سحر ميزة الشاشة المصغرة (PiP Mode) العائمة لمتابعة الوقت فوق اليوتيوب والألعاب
+        // كود الـ PiP العائم الفخم
         const canvas = document.createElement('canvas');
         canvas.width = 320;
         canvas.height = 120;
@@ -414,8 +506,8 @@
         function renderPiPCanvas(text) {
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#38bdf8'; // لون أرقام فخم ومضيء بالنافذة
-            ctx.font = 'bold 45px Courier New';
+            ctx.fillStyle = '#38bdf8'; 
+            ctx.font = 'bold 46px Courier New';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(text, canvas.width / 2, canvas.height / 2);
@@ -428,7 +520,7 @@
                     document.getElementById('pipBtn').textContent = 'PIP MODE';
                 } else {
                     renderPiPCanvas(document.getElementById('display').textContent);
-                    const stream = canvas.captureStream(10); // التقاط الكانفاس كبث فيديو
+                    const stream = canvas.captureStream(10);
                     video.srcObject = stream;
                     
                     video.onloadedmetadata = async () => {
@@ -441,20 +533,19 @@
                     };
                 }
             } catch (error) {
-                alert("Your browser doesn't support PiP for custom elements, or it needs a user interaction first.");
+                alert("PiP mode interaction error.");
             }
         }
 
-        // استماع لحدث إغلاق النافذة العائمة يدوياً
         video.addEventListener('leavepictureinpicture', () => {
             document.getElementById('pipBtn').textContent = 'PIP MODE';
         });
 
-        // سحر الـ Fullscreen الفخم
+        // كود الـ Fullscreen
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen().catch(err => {
-                    alert(`Error trying to enable fullscreen: ${err.message}`);
+                    alert(`Error: ${err.message}`);
                 });
                 document.getElementById('fsBtn').textContent = 'EXIT APP';
             } else {
@@ -468,6 +559,9 @@
                 document.getElementById('fsBtn').textContent = 'APP MODE';
             }
         });
+
+        // تشغيل الـ Load عند فتح الصفحة فوراً
+        window.onload = loadState;
     </script>
 </body>
 </html>
